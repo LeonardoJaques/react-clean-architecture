@@ -1,0 +1,85 @@
+.app-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  background-color: white;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ff6633;
+  margin-bottom: 10px;
+}
+
+.logo-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: 'Brush Script MT', cursive, sans-serif;
+  font-size: 2rem;
+}
+
+.language-toggles {
+  display: flex;
+  gap: 15px;
+}
+
+.flag-btn {
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+.flag-btn:hover {
+  transform: scale(1.1);
+}
+
+.flag-btn.active {
+  border: 1px solid #ff6633;
+  box-shadow: 0 2px 5px rgba(255, 102, 51, 0.4);
+}
+
+.orange-nav {
+  background-color: #ff6633;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.orange-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  gap: 30px;
+}
+
+.orange-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.orange-nav a:hover, .orange-nav a.active-link {
+  opacity: 1;
+  font-weight: bold;
+}

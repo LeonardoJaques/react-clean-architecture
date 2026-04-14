@@ -1,0 +1,29 @@
+{
+  "translation": {
+    "header": {
+      "home": "Home",
+      "my_list": "My list"
+    },
+    "search": {
+      "placeholder": "Search media...",
+      "dropdown_default": "Select...",
+      "dropdown_movies": "Movies",
+      "dropdown_series": "Series",
+      "dropdown_episodes": "Episode",
+      "button": "SEARCH"
+    },
+    "movie_card": {
+      "like": "LIKE",
+      "unlike": "UNLIKE"
+    },
+    "details": {
+      "back": "Back",
+      "overview": "Overview",
+      "release_date": "Release Date",
+      "rating": "Rating"
+    },
+    "my_list": {
+      "empty": "You haven't liked any movies yet. Search and click LIKE!"
+    }
+  }
+}

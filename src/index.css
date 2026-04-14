@@ -1,0 +1,38 @@
+:root {
+  --primary-orange: #ff6633;
+  --primary-red: #990000;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+/* Reset buttons and inputs */
+button, input, select {
+  font-family: inherit;
+  outline: none;
+}

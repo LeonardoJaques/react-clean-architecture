@@ -1,0 +1,29 @@
+{
+  "translation": {
+    "header": {
+      "home": "Início",
+      "my_list": "Minha lista"
+    },
+    "search": {
+      "placeholder": "Buscar mídia...",
+      "dropdown_default": "Selecionar...",
+      "dropdown_movies": "Filmes",
+      "dropdown_series": "Series",
+      "dropdown_episodes": "Episódio",
+      "button": "BUSCAR"
+    },
+    "movie_card": {
+      "like": "CURTIR",
+      "unlike": "DESCURTIR"
+    },
+    "details": {
+      "back": "Voltar",
+      "overview": "Sinopse",
+      "release_date": "Lançamento",
+      "rating": "Avaliação"
+    },
+    "my_list": {
+      "empty": "Você ainda não curtiu nenhum filme. Busque e clique em CURTIR!"
+    }
+  }
+}
