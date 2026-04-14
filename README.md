@@ -1,73 +1,150 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🍿 Watch Later
 
-Currently, two official plugins are available:
+### Aplicação de busca e gerenciamento de mídias construída com React, Redux e Clean Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Redux](https://img.shields.io/badge/Redux_Toolkit-2-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux-toolkit.js.org/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev/)
+[![i18n](https://img.shields.io/badge/i18next-PT/EN-26A69A?style=for-the-badge&logo=i18next&logoColor=white)](https://www.i18next.com/)
 
-## React Compiler
+</div>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Tela inicial | Resultados da busca |
+|:---:|:---:|
+| ![Home](./docs/screenshot-home.png) | ![Busca](./docs/screenshot-search.png) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Detalhes do filme | Minha Lista |
+|:---:|:---:|
+| ![Detalhes](./docs/screenshot-details.png) | ![Minha Lista](./docs/screenshot-mylist.png) |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ✨ Funcionalidades
+
+- 🔍 **Busca de mídias** — Pesquise Filmes, Séries ou Episódios usando a API do TMDB
+- 🌐 **Internacionalização (i18n)** — Suporte completo a Português 🇧🇷 e Inglês 🇺🇸, com re-busca automática dos títulos no idioma selecionado
+- ❤️ **Curtir / Descurtir** — Marque mídias como favoritas diretamente nos cards (toggle CURTIR ↔ DESCURTIR)
+- 📋 **Minha Lista** — Página dedicada com todas as mídias curtidas, com opção de remover
+- 📄 **Página de Detalhes** — Sinopse, avaliação, data de lançamento e pôster ampliado de cada mídia
+- 🔒 **Credenciais seguras** — API Key carregada exclusivamente via variável de ambiente (`.env`), nunca exposta no código
+
+---
+
+## 🏗️ Arquitetura
+
+O projeto segue os princípios da **Clean Architecture**, separando responsabilidades em camadas bem definidas:
+
+```
+src/
+├── ifrastructure/           # Camada de infraestrutura (dados externos)
+│   ├── api/
+│   │   └── http.ts          # Cliente Axios com interceptor de idioma
+│   ├── i18n/
+│   │   ├── i18n.ts          # Configuração do i18next
+│   │   └── locales/         # Arquivos de tradução PT-BR e EN-US
+│   └── movies/
+│       ├── movie.types.ts   # Interfaces TypeScript (MediaItem, MediaDetails)
+│       └── movies.service.ts # Serviços de busca e detalhes (TMDB API)
+│
+├── store/                   # Camada de estado global (Redux)
+│   ├── index.ts             # Configuração da Store
+│   ├── hooks.ts             # Hooks tipados (useAppDispatch, useAppSelector)
+│   └── slices/
+│       ├── moviesSlice.ts   # Estado de busca + Async Thunk fetchMovies
+│       └── myListSlice.ts   # Estado da lista de favoritos
+│
+└── presentation/            # Camada de apresentação (UI)
+    ├── shared/
+    │   ├── button/          # Componente Button reutilizável
+    │   └── header/          # Header com logo, idioma e navegação
+    └── views/
+        ├── home/            # Página de busca (SearchBar + MovieGrid + MovieCard)
+        ├── movie-detail/    # Página de detalhes da mídia
+        └── my-list/         # Página de favoritos
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Tecnologias
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Tecnologia | Versão | Uso |
+|---|---|---|
+| **React** | 19 | Framework de UI com componentes funcionais e hooks |
+| **TypeScript** | 5 | Tipagem estática em todo o projeto |
+| **Redux Toolkit** | 2 | Gerenciamento de estado global com Slices e Async Thunks |
+| **React Redux** | 9 | Integração do Redux com React via Provider e hooks |
+| **React Router DOM** | 7 | Roteamento entre páginas (Home, Detalhes, Minha Lista) |
+| **i18next + react-i18next** | 26/17 | Internacionalização dinâmica PT-BR ↔ EN-US |
+| **Axios** | 1 | Cliente HTTP com interceptor para idioma dinâmico |
+| **Vite** | 8 | Bundler e servidor de desenvolvimento |
+| **TMDB API** | v3 | Fonte dos dados de filmes, séries e episódios |
+
+---
+
+## ⚙️ Como rodar localmente
+
+### Pré-requisitos
+
+- Node.js 18+
+- Yarn
+- Conta no [The Movie Database (TMDB)](https://www.themoviedb.org/) para obter uma API Key
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone git@github.com:LeonardoJaques/react-clean-architecture.git
+cd react-clean-architecture
+
+# Instale as dependências
+yarn install
+
+# Configure as variáveis de ambiente
+cp .env.example .env
+# Edite o .env e adicione sua VITE_MOVIES_API_KEY
 ```
+
+### Executar
+
+```bash
+# Modo desenvolvimento (com HMR)
+yarn dev
+
+# Build de produção
+yarn build
+
+# Preview do build
+yarn preview
+```
+
+A aplicação estará disponível em `http://localhost:5173`
+
+---
+
+## 🔐 Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
+
+```env
+VITE_MOVIES_API_KEY=seu_token_aqui
+```
+
+> **⚠️ Importante:** Nunca commite o arquivo `.env` com suas credenciais. Ele já está configurado no `.gitignore`.
+
+Para obter a API Key do TMDB:
+1. Crie uma conta em [themoviedb.org](https://www.themoviedb.org/)
+2. Acesse **Configurações → API**
+3. Copie o **Bearer Token (API Read Access Token)**
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido como projeto acadêmico para a PUC Minas.
